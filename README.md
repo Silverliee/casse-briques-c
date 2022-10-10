@@ -21,9 +21,13 @@
 </p>
 
 # Description
+ <p style="font-size: large">Une description technique du projet est disponible <a href="https://pickled-hovercraft-9a7.notion.site/Projet-Casse-brique-C-fdbc35db86034f80af93acb88d15af30"> ici </a></p>
 
 # Installation
 
 # Lancement
 
 # L'équipe
+<p style="font-size: large"> -  Mohamed Seydou TRAORE</p>
+<p style="font-size: large"> -  Quentin MAITRE</p>
+<p style="font-size: large"> - Sami CORBIER</p>
