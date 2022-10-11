@@ -26,11 +26,15 @@ typedef struct {
 typedef struct {
     int timer;
     int blastRange;
+    int posX;
+    int posY;
     Player *owner;
 } Bomb;
 
 //La map, note : ça serait intéréssant de représenter
 //notre map sous forme de matrice d'entier (tableau a deux dimensions) avec
+// - -1 pour les zones d'explosions des bombes
+// - -2 quand un mur à été détruit
 // - 0 pour les murs indestructibles
 // - 1 pour les murs destructibles
 // - 2 pour les trous
