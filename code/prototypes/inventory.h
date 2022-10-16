@@ -22,4 +22,9 @@
 **/
 void addItem(Player player, int itemCode);
 
+/**
+	genère un itemCode en prennant en compte la notion de rareté des items
+**/
+int generateRandomItem();
+
 #endif
