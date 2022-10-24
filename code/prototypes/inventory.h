@@ -1,11 +1,7 @@
 #ifndef inventory_h
 #define inventory_h
 #include <stdio.h>
-#include "bomb.h"
 #include "gameEntity.h"
-#include "map.h"
-#include "player.h"
-#include "game.h"
 
 /**
 	Ajoute un item au joueur en paramettre en fonction de l'itemCode

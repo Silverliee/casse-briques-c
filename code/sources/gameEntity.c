@@ -58,7 +58,7 @@ Game *createGame(int playerCount,Player *playerList,int mapSelected) {
     myGame->WhoPlay = 1;
     myGame->gameMap = createMap(mapSelected);
     Bomb myPosedBombSubMap[200];
-    myGame->posedBomb =  myPosedBombSubMap;
+    //myGame->posedBomb =  myPosedBombSubMap;
     myGame->players[playerCount];
     for (int i = 0; i < playerCount - 1 ; i++) {
         myGame->players[i] = playerList[i];

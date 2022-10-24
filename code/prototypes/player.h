@@ -1,11 +1,7 @@
 #ifndef player_h
 #define player_h
 #include <stdio.h>
-#include "bomb.h"
 #include "gameEntity.h"
-#include "inventory.h"
-#include "map.h"
-#include "game.h"
 
 /**
 	Cette fonction devra déposer une bombe à la case ou se situe un joueur et décrémenter

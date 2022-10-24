@@ -1,11 +1,6 @@
 #ifndef gameEntity_h
 #define gameEntity_h
 #include <stdio.h>
-#include "bomb.h"
-#include "inventory.h"
-#include "map.h"
-#include "player.h"
-#include "game.h"
 
 /**
  * Les objets
