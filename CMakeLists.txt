@@ -3,4 +3,19 @@ project(casse_brique_c C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(casse_brique_c main.c)
+SET(PROJECT_HEADERS
+        code/prototypes/bomb.h
+        code/prototypes/game.h
+        code/prototypes/gameEntity.h
+        code/prototypes/inventory.h
+        code/prototypes/map.h
+        code/prototypes/player.h)
+SET(PROJECT_SOURCES
+        code/sources/bomb.c
+        code/sources/game.c
+        code/sources/gameEntity.c
+        code/sources/inventory.c
+        code/sources/map.c
+        code/sources/player.c)
+
+add_executable(casse_brique_c ${PROJECT_SOURCES} ${PROJECT_HEADERS} main.c)

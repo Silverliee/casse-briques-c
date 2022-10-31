@@ -1,53 +1,67 @@
 #include <stdio.h>
 #include "../prototypes/gameEntity.h"
-//Les objets
-//ça serait plus pertinant que bombDown reduise juste la valeur de bombUp.. peut-être le retirer
-typedef struct {
-    int bombUp;
-    int bombDown;
-    int yellowFlame;
-    int blueFlame;
-    int redFlame;
-    int bombPass;
-    int bombKick;
-    int invincibility;
-    int heart;
-    int life;
-} Inventory;
+#include <stdlib.h>
 
-//Le joueur
-typedef struct {
-    char* name;
-    int bombCount;
-    Inventory inventory;
-} Player;
+int SELECTED_MAP_1[5][9] = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 4, 2, 1, 1, 1, 1, 1, 0},
+        {0, 2, 0, 1, 0, 1, 0, 2, 0},
+        {0, 1, 1 ,1, 1, 1, 2, 5, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0}
+};
 
-//Les bombes
-typedef struct {
-    int timer;
-    int blastRange;
-    int posX;
-    int posY;
-    Player *owner;
-} Bomb;
+int SELECTED_MAP_2[13][15] = {
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,2,2,1,1,1,1,1,1,1,1,1,2,2,0},
+        {0,2,0,1,0,1,0,1,0,1,0,1,0,2,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,2,0,1,0,1,0,1,0,1,0,1,0,2,0},
+        {0,2,2,1,1,1,1,1,1,1,1,1,2,2,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+};
 
-//La map, note : ça serait intéréssant de représenter
-//notre map sous forme de matrice d'entier (tableau a deux dimensions) avec
-// - -1 pour les zones d'explosions des bombes
-// - -2 quand un mur à été détruit
-// - 0 pour les murs indestructibles
-// - 1 pour les murs destructibles
-// - 2 pour les trous
-// - 3 pour les bombes
-// - 4 pour le joueur 1
-// - 3 + n pour le joueur n;
-typedef struct {
-    int **map;
-} Map;
+Player *createPlayer(char* name, int bombCount) {
+    Player *myPlayer = malloc(sizeof(Player));
+    myPlayer->name = name;
+    myPlayer->bombCount = bombCount;
+    return myPlayer;
+}
 
-//La partie
-typedef struct {
-    Player **players;
-    int playerCount;
-    int mapSelected;
-} Game;
+Map createMap(int selectedMap) {
+    Map *myMap = malloc(sizeof(Map));
+    switch (selectedMap) {
+        case 1:
+            myMap->row = 5;
+            myMap->column = 9;
+            myMap->map = (int **) SELECTED_MAP_1;
+            break;
+        case 2:
+            myMap->row = 13;
+            myMap->column = 15;
+            myMap->map = (int **) SELECTED_MAP_2;
+            break;
+        default:
+            break;
+    }
+}
+
+Game *createGame(int playerCount,Player *playerList,int mapSelected) {
+    Game *myGame = malloc(sizeof(Player));
+    myGame->playerCount = playerCount;
+    myGame->mapSelected = mapSelected;
+    myGame->WhoPlay = 1;
+    myGame->gameMap = createMap(mapSelected);
+    Bomb myPosedBombSubMap[200];
+    //myGame->posedBomb =  myPosedBombSubMap;
+    myGame->players[playerCount];
+    for (int i = 0; i < playerCount - 1 ; i++) {
+        myGame->players[i] = playerList[i];
+    }
+    return myGame;
+}
