@@ -16,10 +16,10 @@ void printMap(Game myGame) {
             else if (myGame.gameMap.map[i][j] == 3) {
                 printf(" ");
             }
-            else if (myGame.gameMap.map[i][j] == 4) {
+            /*else if (myGame.gameMap.map[i][j] == 4) {
                 printf(".");
-            }
-            else if (myGame.gameMap.map[i][j] > 4 && myGame.gameMap.map[i][j] < 10) {
+            }*/
+            else if (myGame.gameMap.map[i][j] > 3 && myGame.gameMap.map[i][j] < 10) {
                 int playerNumb;
                 switch (myGame.gameMap.map[i][j]) {
                     case 4:
@@ -37,12 +37,13 @@ void printMap(Game myGame) {
                     default:
                         break;
                 }
-                printf("P%d",playerNumb);
+                printf("%d",playerNumb);
             }
             else if (myGame.gameMap.map[i][j] <= 10) {
                 printf("Po");
             }
 
         }
+        printf("\n");
     }
 }

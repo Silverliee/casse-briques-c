@@ -21,7 +21,7 @@ int main() {
 
     Game myGame = *createGame(2, listeJoueurs, 1);
 
-    printf("%s", myGame.players[1].name);
-
+    printf("%s\n", myGame.players[1].name);
+    printMap(myGame);
     return 0;
 }

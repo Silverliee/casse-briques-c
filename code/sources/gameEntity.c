@@ -34,21 +34,42 @@ Player *createPlayer(char* name, int bombCount) {
 }
 
 Map createMap(int selectedMap) {
-    Map *myMap = malloc(sizeof(Map));
+    Map myMap;
+    myMap.map = calloc(myMap.column, sizeof(int *));
     switch (selectedMap) {
         case 1:
-            myMap->row = 5;
-            myMap->column = 9;
-            myMap->map = (int **) SELECTED_MAP_1;
+            myMap.row = 5;
+            myMap.column = 9;
+            myMap.map = (int **) SELECTED_MAP_1;
+            myMap.row = 5;
+            myMap.column = 9;
+            myMap.map = calloc(myMap.column+1, sizeof(int *));
+            for (int i = 0; i < myMap.row; i++) {
+                myMap.map[i] = calloc(myMap.column+1, sizeof(int));
+            }
+            for (int i = 0; i < myMap.row ; i++) {
+                for (int j = 0; j < myMap.column ; j++) {
+                    myMap.map[i][j] = SELECTED_MAP_1[i][j];
+                }
+            }
             break;
         case 2:
-            myMap->row = 13;
-            myMap->column = 15;
-            myMap->map = (int **) SELECTED_MAP_2;
+            myMap.row = 13;
+            myMap.column = 15;
+            myMap.map = (int **) SELECTED_MAP_2;
+            myMap.row = 13;
+            myMap.column = 15;
+            myMap.map = malloc(sizeof(int)*myMap.row*myMap.column);
+            for (int i = 0; i < myMap.column ; i++) {
+                for (int j = 0; j < myMap.row ; j++) {
+                    myMap.map[i][j] = SELECTED_MAP_2[i][j];
+                }
+            }
             break;
         default:
             break;
     }
+    return myMap;
 }
 
 Game *createGame(int playerCount,Player *playerList,int mapSelected) {
