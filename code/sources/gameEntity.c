@@ -59,8 +59,8 @@ Game *createGame(int playerCount,Player *playerList,int mapSelected) {
     myGame->gameMap = createMap(mapSelected);
     Bomb myPosedBombSubMap[200];
     //myGame->posedBomb =  myPosedBombSubMap;
-    myGame->players[playerCount];
-    for (int i = 0; i < playerCount - 1 ; i++) {
+    myGame->players = malloc(sizeof(Player)*playerCount);
+    for (int i = 0; i < playerCount ; i++) {
         myGame->players[i] = playerList[i];
     }
     return myGame;
