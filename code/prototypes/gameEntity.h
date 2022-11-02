@@ -31,7 +31,7 @@ typedef struct {
 typedef struct {
     int timer;
     int blastRange;
-    Player *owner;
+    Player owner;
     int posX;
     int posY;
 } Bomb;
@@ -60,7 +60,7 @@ typedef struct {
     int playerCount;
     int mapSelected;
     Map gameMap;
-    Bomb posedBomb[100];
+    Bomb* posedBomb;
     int posedBombCount;
 } Game;
 

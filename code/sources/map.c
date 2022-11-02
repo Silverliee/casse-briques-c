@@ -5,10 +5,12 @@ void printMap(Game myGame) {
     for (int i = 0; i < myGame.gameMap.row; i++) {
         for (int j = 0; j < myGame.gameMap.column; j++) {
             if (myGame.gameMap.map[i][j] == 0) {
-                printf("x");
+                //x
+                printf("%c", 219);
             }
             else if (myGame.gameMap.map[i][j] == 1) {
-                printf("m");
+                //m
+                printf("%c", 177);
             }
             else if (myGame.gameMap.map[i][j] == 2) {
                 printf(" ");
@@ -16,31 +18,15 @@ void printMap(Game myGame) {
             else if (myGame.gameMap.map[i][j] == 3) {
                 printf(" ");
             }
-            /*else if (myGame.gameMap.map[i][j] == 4) {
-                printf(".");
-            }*/
-            else if (myGame.gameMap.map[i][j] > 3 && myGame.gameMap.map[i][j] < 10) {
-                int playerNumb;
-                switch (myGame.gameMap.map[i][j]) {
-                    case 4:
-                        playerNumb = 1;
-                        break;
-                    case 5:
-                        playerNumb = 2;
-                        break;
-                    case 6:
-                        playerNumb = 3;
-                        break;
-                    case 7:
-                        playerNumb = 4;
-                        break;
-                    default:
-                        break;
-                }
-                printf("%d",playerNumb);
+            else if (myGame.gameMap.map[i][j] == 4) {
+                printf("O");
             }
-            else if (myGame.gameMap.map[i][j] <= 10) {
-                printf("Po");
+            else if (myGame.gameMap.map[i][j] > 4 && myGame.gameMap.map[i][j] < 10) {
+                
+                printf("%d",myGame.gameMap.map[i][j]-4);
+            }
+            else if (myGame.gameMap.map[i][j] >= 10) {
+                printf("%d", (myGame.gameMap.map[i][j]/10)-4);
             }
 
         }
