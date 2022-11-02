@@ -1,16 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "code/prototypes/bomb.h"
-#include "code/prototypes/game.h"
-#include "code/prototypes/inventory.h"
 #include "code/prototypes/gameEntity.h"
 #include "code/prototypes/map.h"
 #include "code/prototypes/player.h"
+#include "code/prototypes/menu.h"
 
 int main() {
+    //gameMenu()
 
-    Player j1 = *createPlayer("quentin", 2);
-    Player j2 = *createPlayer("alex", 2);
+    Player j1 = createPlayer("quentin", 2);
+    Player j2 = createPlayer("alex", 2);
 
     Player* listeJoueurs = malloc(sizeof(Player)*2);
 

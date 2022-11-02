@@ -5,22 +5,22 @@
 
 void addItem(Player player, int itemCode) {
     switch (itemCode) {
-        case 0:
+        case -1:
             player.inventory.bombUp += 1;
             break;
-        case 1:
+        case -2:
             player.inventory.bombDown += 1;
             break;
-        case 2:
+        case -3:
             player.inventory.yellowFlame += 1;
             break;
-        case 3:
+        case -4:
             player.inventory.blueFlame += 1;
             break;
-        case 4:
+        case -5:
             player.inventory.redFlame += 1;
             break;
-        case 5:
+        case -6:
             if (player.inventory.bombKick == 1 && player.inventory.bombPass == 0) {
                 player.inventory.bombKick = 0;
                 player.inventory.bombPass = 1;
@@ -28,7 +28,7 @@ void addItem(Player player, int itemCode) {
                 player.inventory.bombPass = 1;
             }
             break;
-        case 6:
+        case -7:
             if (player.inventory.bombPass == 1 && player.inventory.bombKick == 0) {
                 player.inventory.bombPass = 0;
                 player.inventory.bombKick = 1;
@@ -36,13 +36,13 @@ void addItem(Player player, int itemCode) {
                 player.inventory.bombKick = 1;
             }
             break;
-        case 7:
+        case -8:
             player.inventory.invincibility = 1;
             break;
-        case 8:
+        case -9:
             player.inventory.heart += 1;
             break;
-        case 9:
+        case -10:
             player.inventory.life += 1;
             break;
         default:
@@ -57,34 +57,34 @@ int generateRandomItem() {
     int lowerLimit = 1, upperLimit = 100;
     int cursor =  lowerLimit + rand() % (upperLimit - lowerLimit);
     if (cursor <= 15) {
-        response = 0;
+        response = -1;
     }
     else if (cursor <= 30) {
-        response = 1;
+        response = -2;
     }
     else if (cursor <= 40) {
-        response = 2;
+        response = -3;
     }
     else if (cursor <= 43) {
-        response = 3;
+        response = -4;
     }
     else if (cursor <= 50) {
-        response = 4;
+        response = -5;
     }
     else if (cursor <= 60) {
-        response = 5;
+        response = -6;
     }
     else if (cursor <= 70) {
-        response = 6;
+        response = -7;
     }
     else if (cursor <= 80) {
-        response = 7;
+        response = -8;
     }
     else if (cursor <= 90) {
-        response = 8;
+        response = -9;
     }
     else if (cursor <= 100) {
-        response = 9;
+        response = -10;
     }
     return response ;
 }

@@ -8,4 +8,6 @@
 **/
 void Boom(Game myGame, Bomb myBomb);
 
+void makeThemBoom(Game myGame);
+
 #endif

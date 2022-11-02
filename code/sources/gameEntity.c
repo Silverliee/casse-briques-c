@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include "../prototypes/gameEntity.h"
 #include <stdlib.h>
+#include "../prototypes/gameEntity.h"
+
 
 int SELECTED_MAP_1[5][9] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
