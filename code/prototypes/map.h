@@ -6,6 +6,6 @@
 /**
 	Fontion d'affichage de la carte
 **/
-void printMap(Game *myGame);
+void printMap(Game myGame);
 
 #endif

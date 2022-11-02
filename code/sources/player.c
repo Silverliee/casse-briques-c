@@ -137,6 +137,7 @@ void dropBomb(Game myGame, Player player, int timer) {
     newBomb.owner = player;
     newBomb.posX = playerPosX;
     newBomb.posY = playerPosY;
+    newBomb.isExplode = 0;
 
     //finalise
     myGame.posedBomb[myGame.posedBombCount] = newBomb;
