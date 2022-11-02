@@ -22,7 +22,7 @@ void printMap(Game myGame) {
                 printf("O");
             }
             else if (myGame.gameMap.map[i][j] > 4 && myGame.gameMap.map[i][j] < 10) {
-                
+
                 printf("%d",myGame.gameMap.map[i][j]-4);
             }
             else if (myGame.gameMap.map[i][j] >= 10) {

@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "code/sources/bomb.c"
-#include "code/sources/game.c"
-#include "code/sources/inventory.c"
-#include "code/sources/gameEntity.c"
-#include "code/sources/map.c"
-#include "code/sources/player.c"
+#include "code/prototypes/bomb.h"
+#include "code/prototypes/game.h"
+#include "code/prototypes/inventory.h"
+#include "code/prototypes/gameEntity.h"
+#include "code/prototypes/map.h"
+#include "code/prototypes/player.h"
 
 int main() {
 
@@ -47,7 +47,7 @@ int main() {
             else{
                 printf("Cette action n'existe pas, veuillez en selectionner une autre\n");
             }
-            tour++; 
+            tour++;
         }
     }
     printMap(myGame);
