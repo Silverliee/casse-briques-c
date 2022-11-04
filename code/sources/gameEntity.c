@@ -82,7 +82,7 @@ Map createMap(int selectedMap) {
 }
 
 Game *createGame(int playerCount,Player *playerList,int mapSelected) {
-    Game *myGame = malloc(sizeof(Player));
+    Game *myGame = malloc(sizeof(Game));
     myGame->playerCount = playerCount;
     myGame->mapSelected = mapSelected;
     myGame->WhoPlay = 1;
