@@ -100,7 +100,7 @@ void movement(Game myGame, int direction) {
     }
 }
 
-void dropBomb(Game myGame, Player player, int timer) {
+void dropBomb(Game myGame, Player player) {
     //set keyVariables
     int playerPosX,playerPosY;
     int playerPosCode = myGame.WhoPlay + 4;
@@ -125,14 +125,10 @@ void dropBomb(Game myGame, Player player, int timer) {
         printf("Il ne vous reste plus de bombe :/\n");
         return;
     }
-    if( timer == 0 || timer > 10) {
-        printf("Le temps d'explosion rentre est incorrect :/ ( 0 < x > 10)\n");
-        return;
-    }
 
     //creation of the bomb
     Bomb newBomb;
-    newBomb.timer = timer;
+    newBomb.timer = 2;
     newBomb.blastRange = playerBombRange;
     newBomb.owner = player;
     newBomb.posX = playerPosX;
