@@ -37,8 +37,7 @@ int main() {
                 movement(myGame, direction);
             }
             else if(action == 2){
-                dropBomb(myGame, myGame.players[myGame.WhoPlay-1], 2);
-                printf("Bombe larguee\n");
+                dropBomb(&myGame, myGame.players[myGame.WhoPlay-1]);
             }
             else if(action == 3){
                 continue;
@@ -46,8 +45,13 @@ int main() {
             else{
                 printf("Cette action n'existe pas, veuillez en selectionner une autre\n");
             }
+<<<<<<< HEAD
             tour++;
+=======
+>>>>>>> 81d18fd (encore)
         }
+        tour++; 
+        myGame.WhoPlay += 1;
     }
     printMap(myGame);
     return 0;

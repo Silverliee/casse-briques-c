@@ -100,10 +100,10 @@ void movement(Game myGame, int direction) {
     }
 }
 
-void dropBomb(Game myGame, Player player) {
+void dropBomb(Game *myGame, Player player) {
     //set keyVariables
     int playerPosX,playerPosY;
-    int playerPosCode = myGame.WhoPlay + 4;
+    int playerPosCode = myGame->WhoPlay + 4;
     int playerRemainingBomb = (player.bombCount + player.inventory.bombUp) - player.inventory.bombDown;
     int playerBombRange;
     if (player.inventory.redFlame == 1) {
@@ -111,9 +111,9 @@ void dropBomb(Game myGame, Player player) {
     } else {
         playerBombRange = (2 + player.inventory.yellowFlame) - player.inventory.blueFlame;
     }
-    for (int i = 0; i < myGame.gameMap.row; i++) {
-        for (int j = 0; j < myGame.gameMap.column; j++) {
-            if(myGame.gameMap.map[i][j] == playerPosCode) {
+    for (int i = 0; i < myGame->gameMap.row; i++) {
+        for (int j = 0; j < myGame->gameMap.column; j++) {
+            if(myGame->gameMap.map[i][j] == playerPosCode) {
                 playerPosX = i;
                 playerPosY = j;
             }
@@ -136,7 +136,8 @@ void dropBomb(Game myGame, Player player) {
     newBomb.isExplode = 0;
 
     //finalise
-    myGame.posedBomb[myGame.posedBombCount] = newBomb;
-    myGame.posedBombCount++;
-    myGame.gameMap.map[playerPosX][playerPosY] = playerPosCode*10;
+    myGame->posedBomb[myGame->posedBombCount] = newBomb;
+    myGame->posedBombCount++;
+    myGame->gameMap.map[playerPosX][playerPosY] = playerPosCode*10;
+
 }

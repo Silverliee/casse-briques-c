@@ -1,4 +1,5 @@
 #include <stdio.h>
+<<<<<<< HEAD
 #include <stdlib.h>
 #include <time.h>
 #include "../prototypes/bomb.h"
@@ -109,4 +110,10 @@ void makeThemBoom(Game myGame) {
             myGame.gameMap.map[myGame.posedBomb[i].posX][myGame.posedBomb[i].posY] = 2;
         }
     }
+=======
+#include "../prototypes/bomb.h"
+
+void verifBoom(Game mygGame){
+    //for(in)
+>>>>>>> 81d18fd (encore)
 }
