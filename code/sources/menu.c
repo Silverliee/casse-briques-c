@@ -20,12 +20,12 @@ void onlineGameMenu() {
 void gameMenu() {
     int menuChoice = 0;
     while (menuChoice != 1 && menuChoice != 2 && menuChoice != 3) {
-        printf("######################################################################");
-        printf("#                                                                    #");
-        printf("#         BIENVENUE SUR BOMBER....JE VEUX DIRE CASSE BRIQUE !        #");
-        printf("#                                                                    #");
-        printf("######################################################################");
-        printf("- 1: Partie Rapide\n- 2: Mode Battle \n- 3: Multijoueur\n");
+        printf("######################################################################\n");
+        printf("#                                                                    #\n");
+        printf("#         BIENVENUE SUR BOMBER....JE VEUX DIRE CASSE BRIQUE !        #\n");
+        printf("#                                                                    #\n");
+        printf("######################################################################\n");
+        printf("- 1: Partie Rapide\n- 2: Mode Battle \n- 3: Partie en ligne\n");
         scanf("%d", &menuChoice);
     }
     switch (menuChoice) {

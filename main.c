@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "code/prototypes/gameEntity.h"
-#include "code/prototypes/map.h"
-#include "code/prototypes/player.h"
-#include "code/prototypes/menu.h"
+#include "code/sources/gameEntity.c"
+#include "code/sources/map.c"
+#include "code/sources/player.c"
+#include "code/sources/menu.c"
+#include "code/sources/bomb.c"
 
 int main() {
-    //gameMenu()
+    //gameMenu();
 
     Player j1 = createPlayer("quentin", 2);
     Player j2 = createPlayer("alex", 2);
@@ -22,9 +23,10 @@ int main() {
 
     int tour = 0;
 
-    Game myGame = *createGame(2, listeJoueurs, 2);
-    while(tour < 2){
+    Game myGame = *createGame(2, listeJoueurs, 1);
+    while(tour < 20){
         action = 0;
+        makeThemBoom(&myGame);
         printMap(myGame);
         printf("Choisissez une action joueur %d:\n", myGame.WhoPlay);
         while(action < 1 || action > 3){
@@ -45,13 +47,14 @@ int main() {
             else{
                 printf("Cette action n'existe pas, veuillez en selectionner une autre\n");
             }
-<<<<<<< HEAD
-            tour++;
-=======
->>>>>>> 81d18fd (encore)
         }
-        tour++; 
-        myGame.WhoPlay += 1;
+        tour++;
+        if(myGame.WhoPlay == myGame.playerCount){
+            myGame.WhoPlay = 1;
+        }
+        else{
+            myGame.WhoPlay += 1;
+        } 
     }
     printMap(myGame);
     return 0;

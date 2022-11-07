@@ -130,7 +130,7 @@ void dropBomb(Game *myGame, Player player) {
     Bomb newBomb;
     newBomb.timer = 2;
     newBomb.blastRange = playerBombRange;
-    newBomb.owner = player;
+    newBomb.owner = myGame->WhoPlay;
     newBomb.posX = playerPosX;
     newBomb.posY = playerPosY;
     newBomb.isExplode = 0;

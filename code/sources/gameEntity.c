@@ -81,11 +81,7 @@ Map createMap(int selectedMap) {
     return myMap;
 }
 
-<<<<<<< HEAD
-Game *createGame(int playerCount,Player playerList[],int mapSelected) {
-=======
 Game *createGame(int playerCount,Player *playerList,int mapSelected) {
->>>>>>> 81d18fd (encore)
     Game *myGame = malloc(sizeof(Game));
     myGame->playerCount = playerCount;
     myGame->mapSelected = mapSelected;

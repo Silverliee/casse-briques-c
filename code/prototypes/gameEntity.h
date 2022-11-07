@@ -31,7 +31,7 @@ typedef struct {
 typedef struct {
     int timer;
     int blastRange;
-    Player owner;
+    int owner;
     int posX;
     int posY;
     int isExplode;
@@ -45,8 +45,8 @@ typedef struct {
     - 3 pour les trous
     - 4 pour les bombes
     - 5 pour le joueur 1
-    - 5 + n pour le joueur n;
-    - (5 + n)*10 Quand le joueur n pose une bombe a son emplacement
+    - 4 + n pour le joueur n;
+    - (4 + n)*10 Quand le joueur n pose une bombe a son emplacement
  **/
 typedef struct {
     int **map;
