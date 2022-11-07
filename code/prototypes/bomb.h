@@ -16,4 +16,11 @@ void Boom(Game *myGame, Bomb myBomb);
 void makeThemBoom(Game *myGame);
 
 
+
+/**
+	Fonction qui vérifie si des bombes présentes sur la map explosent
+	Le timer d'une bombe est décrémenté lors du tour du joueur qui l'a posé
+*/
+void verifBoom(Game myGame);
+
 #endif

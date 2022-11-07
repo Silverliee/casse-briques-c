@@ -5,12 +5,12 @@
 #include "../sources/inventory.c"
 
 void boomDestructibleWall(int *map) {
-    /*srand(time(NULL));
+    srand(time(NULL));
     int lowerLimit = 1, upperLimit = 100;
     int cursor =  lowerLimit + rand() % (upperLimit - lowerLimit);
     if(cursor >= 50) {
         *map = generateRandomItem();
-    }*/
+    }
     *map = 2;
 }
 
