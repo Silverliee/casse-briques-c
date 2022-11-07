@@ -100,10 +100,10 @@ void movement(Game myGame, int direction) {
     }
 }
 
-void dropBomb(Game myGame, Player player, int timer) {
+void dropBomb(Game *myGame, Player player) {
     //set keyVariables
     int playerPosX,playerPosY;
-    int playerPosCode = myGame.WhoPlay + 4;
+    int playerPosCode = myGame->WhoPlay + 4;
     int playerRemainingBomb = (player.bombCount + player.inventory.bombUp) - player.inventory.bombDown;
     int playerBombRange;
     if (player.inventory.redFlame == 1) {
@@ -111,9 +111,9 @@ void dropBomb(Game myGame, Player player, int timer) {
     } else {
         playerBombRange = (2 + player.inventory.yellowFlame) - player.inventory.blueFlame;
     }
-    for (int i = 0; i < myGame.gameMap.row; i++) {
-        for (int j = 0; j < myGame.gameMap.column; j++) {
-            if(myGame.gameMap.map[i][j] == playerPosCode) {
+    for (int i = 0; i < myGame->gameMap.row; i++) {
+        for (int j = 0; j < myGame->gameMap.column; j++) {
+            if(myGame->gameMap.map[i][j] == playerPosCode) {
                 playerPosX = i;
                 playerPosY = j;
             }
@@ -125,14 +125,10 @@ void dropBomb(Game myGame, Player player, int timer) {
         printf("Il ne vous reste plus de bombe :/\n");
         return;
     }
-    if( timer == 0 || timer > 10) {
-        printf("Le temps d'explosion rentre est incorrect :/ ( 0 < x > 10)\n");
-        return;
-    }
 
     //creation of the bomb
     Bomb newBomb;
-    newBomb.timer = timer;
+    newBomb.timer = 2;
     newBomb.blastRange = playerBombRange;
     newBomb.owner = player;
     newBomb.posX = playerPosX;
@@ -140,7 +136,8 @@ void dropBomb(Game myGame, Player player, int timer) {
     newBomb.isExplode = 0;
 
     //finalise
-    myGame.posedBomb[myGame.posedBombCount] = newBomb;
-    myGame.posedBombCount++;
-    myGame.gameMap.map[playerPosX][playerPosY] = playerPosCode*10;
+    myGame->posedBomb[myGame->posedBombCount] = newBomb;
+    myGame->posedBombCount++;
+    myGame->gameMap.map[playerPosX][playerPosY] = playerPosCode*10;
+
 }
