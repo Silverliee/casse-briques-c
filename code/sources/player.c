@@ -15,7 +15,17 @@ void movement(Game myGame, int direction) {
     switch (direction) {
         //Haut
         case 1:
-            if (myGame.gameMap.map[playerPosX - 1][playerPosY] == 0
+            if(playerPosX == 0){
+                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
+                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
+                }
+                else{
+                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
+                }
+                myGame.gameMap.map[myGame.gameMap.row-1][playerPosY] = playerPosCode;
+            }
+
+            else if (myGame.gameMap.map[playerPosX - 1][playerPosY] == 0
             || myGame.gameMap.map[playerPosX - 1][playerPosY] == 1
             || myGame.gameMap.map[playerPosX - 1][playerPosY] == 4
             || myGame.gameMap.map[playerPosX - 1][playerPosY] > 4
@@ -31,12 +41,22 @@ void movement(Game myGame, int direction) {
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
                 }
+
                 myGame.gameMap.map[playerPosX - 1][playerPosY] = playerPosCode;
             }
              break;
         //bas
         case 2:
-            if (myGame.gameMap.map[playerPosX + 1][playerPosY] == 0
+        if(playerPosX == myGame.gameMap.row-1){
+                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
+                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
+                }
+                else{
+                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
+                }
+                myGame.gameMap.map[0][playerPosY] = playerPosCode;
+            }
+            else if (myGame.gameMap.map[playerPosX + 1][playerPosY] == 0
                 || myGame.gameMap.map[playerPosX + 1][playerPosY] == 1
                 || myGame.gameMap.map[playerPosX + 1][playerPosY] == 4
                 || myGame.gameMap.map[playerPosX + 1][playerPosY] > 4
@@ -57,7 +77,16 @@ void movement(Game myGame, int direction) {
             break;
         //Gauche
         case 3:
-            if (myGame.gameMap.map[playerPosX][playerPosY - 1] == 0
+            if(playerPosY == 0){
+                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
+                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
+                }
+                else{
+                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
+                }
+                myGame.gameMap.map[playerPosX][myGame.gameMap.column-1] = playerPosCode;
+            }
+            else if (myGame.gameMap.map[playerPosX][playerPosY - 1] == 0
                 || myGame.gameMap.map[playerPosX][playerPosY - 1] == 1
                 || myGame.gameMap.map[playerPosX][playerPosY - 1] == 4
                 || myGame.gameMap.map[playerPosX][playerPosY - 1] > 4
@@ -78,7 +107,16 @@ void movement(Game myGame, int direction) {
             break;
         //Droite
         case 4:
-            if (myGame.gameMap.map[playerPosX][playerPosY + 1] == 0
+            if(playerPosY == myGame.gameMap.column-1){
+                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
+                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
+                }
+                else{
+                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
+                }
+                myGame.gameMap.map[playerPosX][0] = playerPosCode;
+            }
+            else if (myGame.gameMap.map[playerPosX][playerPosY + 1] == 0
                 || myGame.gameMap.map[playerPosX][playerPosY + 1] == 1
                 || myGame.gameMap.map[playerPosX][playerPosY + 1] == 4
                 || myGame.gameMap.map[playerPosX][playerPosY + 1] > 4

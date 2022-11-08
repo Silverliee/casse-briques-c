@@ -44,10 +44,12 @@ void boomPlayer(Game *myGame , int *map) {
 }
 
 void verticalBoom(Game *myGame, Bomb myBomb) {
+    //vers le bas
     for(int i = 1; i < myBomb.blastRange+1; i++){
         //rencontre de murs destructibles
         if(myGame->gameMap.map[myBomb.posX+i][myBomb.posY] == 1){
             boomDestructibleWall(&myGame->gameMap.map[myBomb.posX+i][myBomb.posY]);
+            break;
         }
 
         //rencontre de bombe
@@ -75,10 +77,12 @@ void verticalBoom(Game *myGame, Bomb myBomb) {
         }
     }
 
+    //vers le haut
     for(int i = 1; i < myBomb.blastRange+1; i++){
         //rencontre de murs destructibles
         if(myGame->gameMap.map[myBomb.posX-i][myBomb.posY] == 1){
             boomDestructibleWall(&myGame->gameMap.map[myBomb.posX-i][myBomb.posY]);
+            break;
         }
 
         //rencontre de bombe
@@ -113,6 +117,7 @@ void horizontalBoom(Game *myGame, Bomb myBomb) {
         //rencontre de murs destructibles
         if(myGame->gameMap.map[myBomb.posX][myBomb.posY+i] == 1){
             boomDestructibleWall(&myGame->gameMap.map[myBomb.posX][myBomb.posY+i]);
+            break;
         }
 
         //rencontre de bombe
@@ -145,6 +150,7 @@ void horizontalBoom(Game *myGame, Bomb myBomb) {
         //rencontre de murs destructibles
         if(myGame->gameMap.map[myBomb.posX][myBomb.posY-i] == 1){
             boomDestructibleWall(&myGame->gameMap.map[myBomb.posX][myBomb.posY-i]);
+            break;
         }
 
         //rencontre de bombe
