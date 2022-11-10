@@ -41,6 +41,7 @@ Player createPlayer(char* name, int bombCount) {
     inventory.invincibility = 0;
     inventory.heart = 0;
     inventory.life = 0;
+    inventory.pickHeart = 0;
 
     myPlayer.inventory = inventory;
     return myPlayer;

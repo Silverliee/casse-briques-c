@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../prototypes/player.h"
+#include "../prototypes/inventory.h"
 
 void movement(Game myGame, int direction) {
     int playerPosX,playerPosY;
@@ -15,6 +16,7 @@ void movement(Game myGame, int direction) {
     switch (direction) {
         //Haut
         case 1:
+            //déplacement à travers trou dans le bord de la map
             if(playerPosX == 0){
                 if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
                     myGame.gameMap.map[playerPosX][playerPosY] = 4;
@@ -24,7 +26,7 @@ void movement(Game myGame, int direction) {
                 }
                 myGame.gameMap.map[myGame.gameMap.row-1][playerPosY] = playerPosCode;
             }
-
+            //déplacemetn impossible
             else if (myGame.gameMap.map[playerPosX - 1][playerPosY] == 0
             || myGame.gameMap.map[playerPosX - 1][playerPosY] == 1
             || myGame.gameMap.map[playerPosX - 1][playerPosY] == 4
@@ -34,12 +36,17 @@ void movement(Game myGame, int direction) {
                 printf("- 1: Haut\n- 2: Bas\n- 3: Gauche\n- 4: Droite\n");
                 scanf("%d", &direction);
                 movement(myGame, direction);
-            } else {
+            } 
+            //déplacement OK
+            else {
                 if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
                     myGame.gameMap.map[playerPosX][playerPosY] = 4;
                 }
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
+                }
+                if(myGame.gameMap.map[playerPosX - 1][playerPosY] < 0){
+                    addItem(myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX - 1][playerPosY]);
                 }
 
                 myGame.gameMap.map[playerPosX - 1][playerPosY] = playerPosCode;
@@ -72,6 +79,11 @@ void movement(Game myGame, int direction) {
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
                 }
+
+                if(myGame.gameMap.map[playerPosX + 1][playerPosY] < 0){
+                    addItem(myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX + 1][playerPosY]);
+                }
+
                 myGame.gameMap.map[playerPosX + 1][playerPosY] = playerPosCode;
             }
             break;
@@ -102,6 +114,11 @@ void movement(Game myGame, int direction) {
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
                 }
+
+                if(myGame.gameMap.map[playerPosX][playerPosY - 1] < 0){
+                    addItem(myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX][playerPosY - 1]);
+                }
+
                 myGame.gameMap.map[playerPosX][playerPosY - 1] = playerPosCode;
             }
             break;
@@ -132,6 +149,11 @@ void movement(Game myGame, int direction) {
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
                 }
+
+                if(myGame.gameMap.map[playerPosX][playerPosY + 1] < 0){
+                    addItem(myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX][playerPosY + 1]);
+                }
+
                 myGame.gameMap.map[playerPosX][playerPosY + 1] = playerPosCode;
             }
             break;

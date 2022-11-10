@@ -26,7 +26,7 @@ int main() {
     Game myGame = *createGame(2, listeJoueurs, 1);
     while(tour < 20){
         action = 0;
-        makeThemBoom(&myGame);
+        makeThemBoom(myGame);
         printMap(myGame);
         printf("Choisissez une action joueur %d:\n", myGame.WhoPlay);
         while(action < 1 || action > 3){

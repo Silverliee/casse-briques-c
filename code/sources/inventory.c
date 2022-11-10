@@ -40,7 +40,10 @@ void addItem(Player player, int itemCode) {
             player.inventory.invincibility = 1;
             break;
         case -9:
-            player.inventory.heart += 1;
+            if(player.inventory.pickHeart == 0){
+                player.inventory.heart += 1;
+                player.inventory.pickHeart = 1;
+            }
             break;
         case -10:
             player.inventory.life += 1;

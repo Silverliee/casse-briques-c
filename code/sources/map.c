@@ -28,6 +28,9 @@ void printMap(Game myGame) {
             else if (myGame.gameMap.map[i][j] >= 10) {
                 printf("%d", (myGame.gameMap.map[i][j]/10)-4);
             }
+            else if(myGame.gameMap.map[i][j] < 0){
+                printf("*");
+            }
 
         }
         printf("\n");

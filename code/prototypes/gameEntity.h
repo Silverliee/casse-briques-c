@@ -17,6 +17,7 @@ typedef struct {
     int invincibility;
     int heart;
     int life;
+    int pickHeart;
 } Inventory;
 
 //Le joueur
