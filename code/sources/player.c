@@ -160,16 +160,15 @@ void movement(Game myGame, int direction) {
     }
 }
 
-void dropBomb(Game *myGame, Player player) {
+void dropBomb(Game *myGame, Player *player) {
     //set keyVariables
     int playerPosX,playerPosY;
     int playerPosCode = myGame->WhoPlay + 4;
-    int playerRemainingBomb = (player.bombCount + player.inventory.bombUp) - player.inventory.bombDown;
     int playerBombRange;
-    if (player.inventory.redFlame == 1) {
+    if (player->inventory.redFlame == 1) {
         playerBombRange = 7;
     } else {
-        playerBombRange = (2 + player.inventory.yellowFlame) - player.inventory.blueFlame;
+        playerBombRange = (2 + player->inventory.yellowFlame) - player->inventory.blueFlame;
     }
     for (int i = 0; i < myGame->gameMap.row; i++) {
         for (int j = 0; j < myGame->gameMap.column; j++) {
@@ -181,7 +180,7 @@ void dropBomb(Game *myGame, Player player) {
     }
 
     // invalide situation management condition
-    if( playerRemainingBomb <= 0) {
+    if( player->bombCount == 0) {
         printf("Il ne vous reste plus de bombe :/\n");
         return;
     }
@@ -199,5 +198,6 @@ void dropBomb(Game *myGame, Player player) {
     myGame->posedBomb[myGame->posedBombCount] = newBomb;
     myGame->posedBombCount++;
     myGame->gameMap.map[playerPosX][playerPosY] = playerPosCode*10;
+    player->bombCount--;
 
 }

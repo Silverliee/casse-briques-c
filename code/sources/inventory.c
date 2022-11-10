@@ -6,10 +6,10 @@
 void addItem(Player player, int itemCode) {
     switch (itemCode) {
         case -1:
-            player.inventory.bombUp += 1;
+            player.bombCount += 1;
             break;
         case -2:
-            player.inventory.bombDown += 1;
+            player.bombCount -= 1;
             break;
         case -3:
             player.inventory.yellowFlame += 1;
@@ -68,22 +68,22 @@ int generateRandomItem() {
     else if (cursor <= 40) {
         response = -3;
     }
-    else if (cursor <= 43) {
+    else if (cursor <= 50) {
         response = -4;
     }
-    else if (cursor <= 50) {
+    else if (cursor <= 55) {
         response = -5;
     }
-    else if (cursor <= 60) {
+    else if (cursor <= 65) {
         response = -6;
     }
-    else if (cursor <= 70) {
+    else if (cursor <= 75) {
         response = -7;
     }
-    else if (cursor <= 80) {
+    else if (cursor <= 85) {
         response = -8;
     }
-    else if (cursor <= 90) {
+    else if (cursor <= 95) {
         response = -9;
     }
     else if (cursor <= 100) {

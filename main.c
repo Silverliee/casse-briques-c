@@ -26,6 +26,7 @@ int main() {
     Game myGame = *createGame(2, listeJoueurs, 1);
     while(tour < 20){
         action = 0;
+        printf("bombcount J%d: %d\n",myGame.WhoPlay ,myGame.players[myGame.WhoPlay-1].bombCount);
         makeThemBoom(myGame);
         printMap(myGame);
         printf("Choisissez une action joueur %d:\n", myGame.WhoPlay);
@@ -39,7 +40,7 @@ int main() {
                 movement(myGame, direction);
             }
             else if(action == 2){
-                dropBomb(&myGame, myGame.players[myGame.WhoPlay-1]);
+                dropBomb(&myGame, &myGame.players[myGame.WhoPlay-1]);
             }
             else if(action == 3){
                 continue;

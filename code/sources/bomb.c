@@ -195,6 +195,7 @@ void makeThemBoom(Game myGame) {
     for (int i = 0; i < myGame.posedBombCount ; i++) {
         if(myGame.posedBomb[i].timer == 0 && myGame.posedBomb[i].isExplode != 1) {
             Boom(myGame,myGame.posedBomb[i]);
+            myGame.players[myGame.posedBomb[i].owner-1].bombCount++;
             myGame.gameMap.map[myGame.posedBomb[i].posX][myGame.posedBomb[i].posY] = 2;
         }
         else if(myGame.posedBomb[i].owner == myGame.WhoPlay){
