@@ -7,7 +7,7 @@
 	Cette fonction devra déposer une bombe à la case ou se situe un joueur et décrémenter
 	de un son nombre de bomb disponible
 **/
-void dropBomb(Game myGame,Player player, int timer);
+void dropBomb(Game *myGame,Player *player);
 
 /**
 	Effectue le déplacement en fonction de la direction
@@ -17,5 +17,12 @@ void dropBomb(Game myGame,Player player, int timer);
 	- 4 Droite
 **/
 void movement(Game myGame, int direction);
+
+/**
+vérifie si un joueur est mort
+*/
+
+void isDead(Game *myGame);
+
 
 #endif

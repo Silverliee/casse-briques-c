@@ -30,9 +30,10 @@ Player createPlayer(char* name, int bombCount) {
     Player myPlayer;
     myPlayer.name = name;
     myPlayer.bombCount = bombCount;
+    myPlayer.life = 1;
     Inventory inventory;
-    inventory.bombUp = 0;
-    inventory.bombDown = 0;
+    //inventory.bombUp = 0;
+    //inventory.bombDown = 0;
     inventory.yellowFlame = 0;
     inventory.blueFlame = 0;
     inventory.redFlame = 0;
@@ -41,6 +42,7 @@ Player createPlayer(char* name, int bombCount) {
     inventory.invincibility = 0;
     inventory.heart = 0;
     inventory.life = 0;
+    inventory.pickHeart = 0;
 
     myPlayer.inventory = inventory;
     return myPlayer;
@@ -81,7 +83,7 @@ Map createMap(int selectedMap) {
     return myMap;
 }
 
-Game *createGame(int playerCount,Player playerList[],int mapSelected) {
+Game *createGame(int playerCount,Player *playerList,int mapSelected) {
     Game *myGame = malloc(sizeof(Game));
     myGame->playerCount = playerCount;
     myGame->mapSelected = mapSelected;

@@ -3,7 +3,7 @@
 
 int isThereAWinner(Game myGame) {
     int playerAlive = 0;
-    for (int i = 0; i < myGame.playerCount - 1; i++) {
+    for (int i = 0; i < myGame.playerCount ; i++) {
         if (myGame.players[i].life > 0) {
             playerAlive++;
         }
