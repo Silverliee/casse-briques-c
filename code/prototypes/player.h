@@ -18,5 +18,11 @@ void dropBomb(Game *myGame,Player *player);
 **/
 void movement(Game myGame, int direction);
 
+/**
+vérifie si un joueur est mort
+*/
+
+void isDead(Game *myGame);
+
 
 #endif

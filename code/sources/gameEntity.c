@@ -30,6 +30,7 @@ Player createPlayer(char* name, int bombCount) {
     Player myPlayer;
     myPlayer.name = name;
     myPlayer.bombCount = bombCount;
+    myPlayer.life = 1;
     Inventory inventory;
     //inventory.bombUp = 0;
     //inventory.bombDown = 0;
