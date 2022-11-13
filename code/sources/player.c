@@ -180,10 +180,11 @@ void movement(Game myGame, int direction) {
     }
 }
 
-void dropBomb(Game *myGame, Player *player) {
+void dropBomb(Game *myGame, Player player) {
     //set keyVariables
     int playerPosX,playerPosY;
     int playerPosCode = myGame->WhoPlay + 4;
+    int playerRemainingBomb = (player.bombCount + player.inventory.bombUp) - player.inventory.bombDown;
     int playerBombRange;
     if (player->inventory.redFlame == 1) {
         playerBombRange = 7;
