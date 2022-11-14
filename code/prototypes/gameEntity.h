@@ -15,6 +15,7 @@ typedef struct {
     int bombPass;
     int bombKick;
     int invincibility;
+    int invincibleTimer;
     int heart;
     int life;
 } Inventory;

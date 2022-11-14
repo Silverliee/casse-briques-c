@@ -37,7 +37,13 @@ void addItem(Player player, int itemCode) {
             }
             break;
         case -8:
+<<<<<<< Updated upstream
             player.inventory.invincibility = 1;
+=======
+            player->inventory.invincibility = 1;
+            player->inventory.invincibleTimer = 3;
+            printf("Vous devenez invincible pendant 2 tours\n");
+>>>>>>> Stashed changes
             break;
         case -9:
             player.inventory.heart += 1;

@@ -22,9 +22,20 @@ int main() {
 
     int tour = 0;
 
+<<<<<<< Updated upstream
     Game myGame = *createGame(2, listeJoueurs, 2);
     while(tour < 2){
         action = 0;
+=======
+    Game myGame = *createGame(nbJoueurs, listeJoueurs, 1);
+    while(game == 1){
+        action= 0;
+        makeThemBoom(myGame);
+        isDead(&myGame);
+        if(isThereAWinner(myGame) != 0){
+            break;
+        }
+>>>>>>> Stashed changes
         printMap(myGame);
         printf("Choisissez une action joueur %d:\n", myGame.WhoPlay);
         while(action < 1 || action > 3){
@@ -48,6 +59,27 @@ int main() {
             }
             tour++;
         }
+<<<<<<< Updated upstream
+=======
+        if(myGame.players[myGame.WhoPlay-1].inventory.invincibleTimer > 0){
+            myGame.players[myGame.WhoPlay-1].inventory.invincibleTimer--;
+            if(myGame.players[myGame.WhoPlay-1].inventory.invincibleTimer == 0){
+                myGame.players[myGame.WhoPlay-1].inventory.invincibility = 0;
+            }
+        }
+        if(myGame.WhoPlay == myGame.playerCount){
+            myGame.WhoPlay = 1;
+            while(myGame.players[myGame.WhoPlay-1].life == 0){
+                myGame.WhoPlay++;
+            }
+        }
+        else{
+            myGame.WhoPlay ++;
+            while(myGame.players[myGame.WhoPlay-1].life == 0){
+                myGame.WhoPlay++;
+            }
+        } 
+>>>>>>> Stashed changes
     }
     printMap(myGame);
     return 0;
