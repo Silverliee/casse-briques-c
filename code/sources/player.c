@@ -16,30 +16,21 @@ void movement(Game myGame, int direction) {
     switch (direction) {
         //Haut
         case 1:
-            //déplacement à travers trou dans le bord de la map
-            if(playerPosX == 0){
-                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
-                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
-                }
-                else{
-                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
-                }
-                myGame.gameMap.map[myGame.gameMap.row-1][playerPosY] = playerPosCode;
-            }
-            //déplacemetn impossible
-            else if (myGame.gameMap.map[playerPosX - 1][playerPosY] == 0
+            if (myGame.gameMap.map[playerPosX - 1][playerPosY] == 0
             || myGame.gameMap.map[playerPosX - 1][playerPosY] == 1
             || (myGame.gameMap.map[playerPosX - 1][playerPosY] == 4 
-            && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0)
+            && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0
+            && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 0)
+            || (myGame.gameMap.map[playerPosX - 1][playerPosY] == 4
+            && myGame.gameMap.map[playerPosX - 2][playerPosY] != 2
+            && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1)
             || myGame.gameMap.map[playerPosX - 1][playerPosY] > 4
             ) {
                 printf("Deplacement impossible\nVeuillez selectionner une autre direction\n");
                 printf("- 1: Haut\n- 2: Bas\n- 3: Gauche\n- 4: Droite\n");
                 scanf("%d", &direction);
                 movement(myGame, direction);
-            } 
-            //déplacement OK
-            else {
+            } else {
                 if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
                     myGame.gameMap.map[playerPosX][playerPosY] = 4;
                 }
@@ -50,7 +41,17 @@ void movement(Game myGame, int direction) {
                     addItem(&myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX - 1][playerPosY]);
                 }
                 if(myGame.gameMap.map[playerPosX - 1][playerPosY] == 4){
-                    myGame.gameMap.map[playerPosX - 1][playerPosY] = playerPosCode*10;
+                    if(myGame.players[myGame.WhoPlay-1].inventory.bombPass == 1){
+                        myGame.gameMap.map[playerPosX - 1][playerPosY] = playerPosCode*10;
+                    }
+                    else if (myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1){
+                        int distance = 2;
+                        while(myGame.gameMap.map[playerPosX - distance][playerPosY] == 2){
+                            distance++;
+                        }
+                        myGame.gameMap.map[playerPosX - distance - 1][playerPosY] = 4;
+                        myGame.gameMap.map[playerPosX - 1][playerPosY] = playerPosCode;
+                    }
                 }
                 else{
                     myGame.gameMap.map[playerPosX - 1][playerPosY] = playerPosCode;
@@ -59,19 +60,14 @@ void movement(Game myGame, int direction) {
              break;
         //bas
         case 2:
-        if(playerPosX == myGame.gameMap.row-1){
-                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
-                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
-                }
-                else{
-                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
-                }
-                myGame.gameMap.map[0][playerPosY] = playerPosCode;
-            }
-            else if (myGame.gameMap.map[playerPosX + 1][playerPosY] == 0
+            if (myGame.gameMap.map[playerPosX + 1][playerPosY] == 0
                 || myGame.gameMap.map[playerPosX + 1][playerPosY] == 1
                 || (myGame.gameMap.map[playerPosX + 1][playerPosY] == 4
-                && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0)
+                && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0
+                && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 0)
+                || (myGame.gameMap.map[playerPosX + 1][playerPosY] == 4
+                && myGame.gameMap.map[playerPosX + 2][playerPosY] != 2
+                && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1)
                 || myGame.gameMap.map[playerPosX + 1][playerPosY] > 4
                     ) {
                 printf("Deplacement impossible\nVeuillez selectionner une autre direction\n");
@@ -85,12 +81,21 @@ void movement(Game myGame, int direction) {
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
                 }
-
                 if(myGame.gameMap.map[playerPosX + 1][playerPosY] < 0){
                     addItem(&myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX + 1][playerPosY]);
                 }
                 if(myGame.gameMap.map[playerPosX + 1][playerPosY] == 4){
-                    myGame.gameMap.map[playerPosX + 1][playerPosY] = playerPosCode*10;
+                    if(myGame.players[myGame.WhoPlay-1].inventory.bombPass == 1){
+                        myGame.gameMap.map[playerPosX + 1][playerPosY] = playerPosCode*10;
+                    }
+                    else if (myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1){
+                        int distance = 2;
+                        while(myGame.gameMap.map[playerPosX + distance][playerPosY] == 2){
+                            distance++;
+                        }
+                        myGame.gameMap.map[playerPosX + distance - 1][playerPosY] = 4;
+                        myGame.gameMap.map[playerPosX + 1][playerPosY] = playerPosCode;
+                    }
                 }
                 else{
                     myGame.gameMap.map[playerPosX + 1][playerPosY] = playerPosCode;
@@ -99,19 +104,14 @@ void movement(Game myGame, int direction) {
             break;
         //Gauche
         case 3:
-            if(playerPosY == 0){
-                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
-                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
-                }
-                else{
-                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
-                }
-                myGame.gameMap.map[playerPosX][myGame.gameMap.column-1] = playerPosCode;
-            }
-            else if (myGame.gameMap.map[playerPosX][playerPosY - 1] == 0
+            if (myGame.gameMap.map[playerPosX][playerPosY - 1] == 0
                 || myGame.gameMap.map[playerPosX][playerPosY - 1] == 1
                 || (myGame.gameMap.map[playerPosX][playerPosY - 1] == 4
-                && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0)
+                && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0
+                && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 0)
+                || (myGame.gameMap.map[playerPosX][playerPosY - 2] == 4
+                && myGame.gameMap.map[playerPosX][playerPosY - 2] != 2
+                && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1)
                 || myGame.gameMap.map[playerPosX][playerPosY - 1] > 4
                     ) {
                 printf("Deplacement impossible\nVeuillez selectionner une autre direction\n");
@@ -125,12 +125,21 @@ void movement(Game myGame, int direction) {
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
                 }
-
                 if(myGame.gameMap.map[playerPosX][playerPosY - 1] < 0){
                     addItem(&myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX][playerPosY - 1]);
                 }
                 if(myGame.gameMap.map[playerPosX][playerPosY - 1] == 4){
-                    myGame.gameMap.map[playerPosX][playerPosY - 1] = playerPosCode*10;
+                    if(myGame.players[myGame.WhoPlay-1].inventory.bombPass == 1){
+                        myGame.gameMap.map[playerPosX][playerPosY - 1] = playerPosCode*10;
+                    }
+                    else if (myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1){
+                        int distance = 2;
+                        while(myGame.gameMap.map[playerPosX][playerPosY - distance] == 2){
+                            distance++;
+                        }
+                        myGame.gameMap.map[playerPosX][playerPosY - distance - 1] = 4;
+                        myGame.gameMap.map[playerPosX][playerPosY - 1] = playerPosCode;
+                    }
                 }
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY - 1] = playerPosCode;
@@ -139,19 +148,14 @@ void movement(Game myGame, int direction) {
             break;
         //Droite
         case 4:
-            if(playerPosY == myGame.gameMap.column-1){
-                if(myGame.gameMap.map[playerPosX][playerPosY]/10 == playerPosCode){
-                    myGame.gameMap.map[playerPosX][playerPosY] = 4;
-                }
-                else{
-                    myGame.gameMap.map[playerPosX][playerPosY] = 2;
-                }
-                myGame.gameMap.map[playerPosX][0] = playerPosCode;
-            }
-            else if (myGame.gameMap.map[playerPosX][playerPosY + 1] == 0
+            if (myGame.gameMap.map[playerPosX][playerPosY + 1] == 0
                 || myGame.gameMap.map[playerPosX][playerPosY + 1] == 1
                 || (myGame.gameMap.map[playerPosX][playerPosY + 1] == 4
-                && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0)
+                && myGame.players[myGame.WhoPlay-1].inventory.bombPass == 0
+                && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 0)
+                || (myGame.gameMap.map[playerPosX][playerPosY + 1] == 4
+                && myGame.gameMap.map[playerPosX][playerPosY + 2] != 2
+                && myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1)
                 || myGame.gameMap.map[playerPosX ][playerPosY + 1] > 4
                     ) {
                 printf("Deplacement impossible\nVeuillez selectionner une autre direction\n");
@@ -165,12 +169,21 @@ void movement(Game myGame, int direction) {
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY] = 2;
                 }
-
                 if(myGame.gameMap.map[playerPosX][playerPosY + 1] < 0){
                     addItem(&myGame.players[myGame.WhoPlay-1], myGame.gameMap.map[playerPosX][playerPosY + 1]);
                 }
                 if(myGame.gameMap.map[playerPosX][playerPosY + 1] == 4){
-                    myGame.gameMap.map[playerPosX][playerPosY + 1] = playerPosCode*10;
+                    if(myGame.players[myGame.WhoPlay-1].inventory.bombPass == 1){
+                        myGame.gameMap.map[playerPosX][playerPosY + 1] = playerPosCode*10;
+                    }
+                    else if (myGame.players[myGame.WhoPlay-1].inventory.bombKick == 1){
+                        int distance = 2;
+                        while(myGame.gameMap.map[playerPosX][playerPosY + distance] == 2){
+                            distance++;
+                        }
+                        myGame.gameMap.map[playerPosX][playerPosY + distance - 1] = 4;
+                        myGame.gameMap.map[playerPosX][playerPosY + 1] = playerPosCode;
+                    }
                 }
                 else{
                     myGame.gameMap.map[playerPosX][playerPosY + 1] = playerPosCode;
