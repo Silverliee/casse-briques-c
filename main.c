@@ -1,26 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "code/sources/gameEntity.c"
-#include "code/sources/map.c"
-#include "code/sources/player.c"
-#include "code/sources/menu.c"
-#include "code/sources/bomb.c"
-#include "code/sources/game.c"
+#include "code/prototypes/bomb.h"
+#include "code/prototypes/game.h"
+#include "code/prototypes/gameEntity.h"
+#include "code/prototypes/inventory.h"
+#include "code/prototypes/map.h"
+#include "code/prototypes/menu.h"
+#include "code/prototypes/player.h"
 
 int main() {
-    //gameMenu();
+
+    chooseFile();
+    /*//gameMenu();
 
     Player j1 = createPlayer("quentin", 2);
     Player j2 = createPlayer("alex", 2);
-    Player j3 = createPlayer("jean", 2);
-    Player j4 = createPlayer("paul", 2);
+*//*    Player j3 = createPlayer("jean", 2);
+    Player j4 = createPlayer("paul", 2);*//*
 
     Player* listeJoueurs = malloc(sizeof(Player)*2);
 
     listeJoueurs[0] = j1;
     listeJoueurs[1] = j2;
-    /*listeJoueurs[2] = j3;
-    listeJoueurs[3] = j4;*/
+    *//*listeJoueurs[2] = j3;
+    listeJoueurs[3] = j4;*//*
 
     int nbJoueurs = 2;
     int direction;
@@ -97,5 +100,5 @@ int main() {
            printf("Match nul !!"); 
            break;
     }
-    return 0;
+    return 0;*/
 }

@@ -6,6 +6,7 @@ void gameMenu();
 void uniqueGameMenu();
 void multipleGameMenu();
 void onlineGameMenu();
+void chooseFile();
 
 
 
