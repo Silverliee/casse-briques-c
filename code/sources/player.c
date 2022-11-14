@@ -49,6 +49,11 @@ void movement(Game myGame, int direction) {
                         while(myGame.gameMap.map[playerPosX - distance][playerPosY] == 2){
                             distance++;
                         }
+                        for(int i = 0; i < myGame.posedBombCount; i++){
+                            if(myGame.posedBomb[i].posX == playerPosX - 1 && myGame.posedBomb[i].posY == playerPosY){
+                                myGame.posedBomb[i].posX = playerPosX - distance - 1;
+                            }
+                        }
                         myGame.gameMap.map[playerPosX - distance - 1][playerPosY] = 4;
                         myGame.gameMap.map[playerPosX - 1][playerPosY] = playerPosCode;
                     }
@@ -92,6 +97,11 @@ void movement(Game myGame, int direction) {
                         int distance = 2;
                         while(myGame.gameMap.map[playerPosX + distance][playerPosY] == 2){
                             distance++;
+                        }
+                        for(int i = 0; i < myGame.posedBombCount; i++){
+                            if(myGame.posedBomb[i].posX == playerPosX + 1 && myGame.posedBomb[i].posY == playerPosY){
+                                myGame.posedBomb[i].posX = playerPosX + distance - 1;
+                            }
                         }
                         myGame.gameMap.map[playerPosX + distance - 1][playerPosY] = 4;
                         myGame.gameMap.map[playerPosX + 1][playerPosY] = playerPosCode;
@@ -137,6 +147,11 @@ void movement(Game myGame, int direction) {
                         while(myGame.gameMap.map[playerPosX][playerPosY - distance] == 2){
                             distance++;
                         }
+                        for(int i = 0; i < myGame.posedBombCount; i++){
+                            if(myGame.posedBomb[i].posX == playerPosX && myGame.posedBomb[i].posY == playerPosY - 1){
+                                myGame.posedBomb[i].posY = playerPosY - distance - 1;
+                            }
+                        }
                         myGame.gameMap.map[playerPosX][playerPosY - distance - 1] = 4;
                         myGame.gameMap.map[playerPosX][playerPosY - 1] = playerPosCode;
                     }
@@ -181,6 +196,11 @@ void movement(Game myGame, int direction) {
                         while(myGame.gameMap.map[playerPosX][playerPosY + distance] == 2){
                             distance++;
                         }
+                        for(int i = 0; i < myGame.posedBombCount; i++){
+                            if(myGame.posedBomb[i].posX == playerPosX && myGame.posedBomb[i].posY == playerPosY + 1){
+                                myGame.posedBomb[i].posY = playerPosY + distance - 1;
+                            }
+                        }
                         myGame.gameMap.map[playerPosX][playerPosY + distance - 1] = 4;
                         myGame.gameMap.map[playerPosX][playerPosY + 1] = playerPosCode;
                     }
@@ -193,11 +213,11 @@ void movement(Game myGame, int direction) {
     }
 }
 
-void dropBomb(Game *myGame, Player player) {
+void dropBomb(Game *myGame, Player *player) {
     //set keyVariables
     int playerPosX,playerPosY;
     int playerPosCode = myGame->WhoPlay + 4;
-    int playerRemainingBomb = (player.bombCount + player.inventory.bombUp) - player.inventory.bombDown;
+    int playerRemainingBomb = player->bombCount;
     int playerBombRange;
     if (player->inventory.redFlame == 1) {
         playerBombRange = 7;
