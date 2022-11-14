@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../prototypes/bomb.h"
-#include "../sources/inventory.c"
+#include "../prototypes/inventory.h"
 
 void boomDestructibleWall(int *map) {
     srand(time(NULL));

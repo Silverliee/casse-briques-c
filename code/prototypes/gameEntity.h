@@ -61,7 +61,7 @@ typedef struct {
     int playerCount;
     int mapSelected;
     Map gameMap;
-    Bomb* posedBomb;
+    Bomb *posedBomb;
     int posedBombCount;
 } Game;
 
