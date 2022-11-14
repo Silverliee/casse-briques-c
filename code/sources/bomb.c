@@ -19,28 +19,84 @@ void boomDestructibleWall(int *map) {
 void boomPlayer(Game myGame , int *map) {
     switch (*map) {
         case 5 :
-            myGame.players[0].life -= 1;
+            if(myGame.players[0].inventory.invincibility == 0){
+                if(myGame.players[0].inventory.heart == 0){
+                    myGame.players[0].life -= 1;
+                }
+                else{
+                    myGame.players[0].inventory.heart = 0;
+                }
+            }
             break;
         case 50:
-            myGame.players[0].life -= 1;
+            if(myGame.players[0].inventory.invincibility == 0){
+                if(myGame.players[0].inventory.heart == 0){
+                    myGame.players[0].life -= 1;
+                }
+                else{
+                    myGame.players[0].inventory.heart = 0;
+                }
+            }
             break;
         case 6:
-            myGame.players[1].life -= 1;
+            if(myGame.players[1].inventory.invincibility == 0){
+                if(myGame.players[1].inventory.heart == 0){
+                    myGame.players[1].life -= 1;
+                }
+                else{
+                    myGame.players[1].inventory.heart = 0;
+                }
+            }
             break;
         case 60:
-            myGame.players[1].life -= 1;
+            if(myGame.players[1].inventory.invincibility == 0){
+                if(myGame.players[1].inventory.heart == 0){
+                    myGame.players[1].life -= 1;
+                }
+                else{
+                    myGame.players[1].inventory.heart = 0;
+                }
+            }
             break;
         case 7:
-            myGame.players[2].life -= 1;
+            if(myGame.players[2].inventory.invincibility == 0){
+                if(myGame.players[2].inventory.heart == 0){
+                    myGame.players[2].life -= 1;
+                }
+                else{
+                    myGame.players[2].inventory.heart = 0;
+                }
+            }
             break;
         case 70:
-            myGame.players[2].life -= 1;
+            if(myGame.players[2].inventory.invincibility == 0){
+                if(myGame.players[2].inventory.heart == 0){
+                    myGame.players[2].life -= 1;
+                }
+                else{
+                    myGame.players[2].inventory.heart = 0;
+                }
+            }
             break;
         case 8:
-            myGame.players[3].life -= 1;
+            if(myGame.players[3].inventory.invincibility == 0){
+                if(myGame.players[3].inventory.heart == 0){
+                    myGame.players[3].life -= 1;
+                }
+                else{
+                    myGame.players[3].inventory.heart = 0;
+                }
+            }
             break;
         case 80:
-            myGame.players[3].life -= 1;
+            if(myGame.players[3].inventory.invincibility == 0){
+                if(myGame.players[3].inventory.heart == 0){
+                    myGame.players[3].life -= 1;
+                }
+                else{
+                    myGame.players[3].inventory.heart = 0;
+                }
+            }
             break;
     }
 }

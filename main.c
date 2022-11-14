@@ -31,7 +31,6 @@ int main() {
     Game myGame = *createGame(nbJoueurs, listeJoueurs, 1);
     while(game == 1){
         action= 0;
-        printf("bombPass %d\n", myGame.players[myGame.WhoPlay-1].inventory.bombPass);
         makeThemBoom(myGame);
         isDead(&myGame);
         if(isThereAWinner(myGame) != 0){
@@ -64,6 +63,12 @@ int main() {
             }
             else{
                 printf("Cette action n'existe pas, veuillez en selectionner une autre\n");
+            }
+        }
+        if(myGame.players[myGame.WhoPlay-1].inventory.invincibleTimer > 0){
+            myGame.players[myGame.WhoPlay-1].inventory.invincibleTimer--;
+            if(myGame.players[myGame.WhoPlay-1].inventory.invincibleTimer == 0){
+                myGame.players[myGame.WhoPlay-1].inventory.invincibility = 0;
             }
         }
         if(myGame.WhoPlay == myGame.playerCount){

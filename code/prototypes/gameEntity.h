@@ -7,14 +7,13 @@
  * ça serait plus pertinant que bombDown reduise juste la valeur de bombUp.. peut-être le retirer
  **/
 typedef struct {
-    //int bombUp;
-    //int bombDown;
     int yellowFlame;
     int blueFlame;
     int redFlame;
     int bombPass;
     int bombKick;
     int invincibility;
+    int invincibleTimer;
     int heart;
     int life;
     int pickHeart;

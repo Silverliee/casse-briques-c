@@ -4,7 +4,7 @@
 
 int SELECTED_MAP_1[5][9] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 5, 2, 1, 1, 1, 1, 1, 0},
+        {0, 5, -7, 2, 1, 1, 1, 1, 0},
         {0, 2, 0, 1, 0, 1, 0, 2, 0},
         {0, 1, 1 ,1, 1, 1, 2, 6, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -40,6 +40,7 @@ Player createPlayer(char* name, int bombCount) {
     inventory.bombPass = 0;
     inventory.bombKick = 0;
     inventory.invincibility = 0;
+    inventory.invincibleTimer = 0;
     inventory.heart = 0;
     inventory.life = 0;
     inventory.pickHeart = 0;
