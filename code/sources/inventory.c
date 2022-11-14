@@ -45,6 +45,7 @@ void addItem(Player *player, int itemCode) {
             break;
         case -8:
             player->inventory.invincibility = 1;
+            player->inventory.invincibleTimer = 3;
             printf("Vous devenez invincible pendant 2 tours\n");
             break;
         case -9:
