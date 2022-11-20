@@ -1,15 +1,99 @@
 #include <stdio.h>
+#include <malloc.h>
 #include "../prototypes/menu.h"
 #include "../prototypes/file.h"
 
-Game chooseMap() {
+Game createDefaultGameMenu(){
+    //var initialisation
     Game myGame;
+    int validator = 0;
     int mapChoice;
-    printf("######################################################################\n");
-    printf("- 1: Grande carte \n- 2: Petite carte \n");
-    printf("######################################################################\n");
-    scanf("%d", &mapChoice);
+    int mapPlayerCapacity;
+    int playerCount;
+    //choose the map
+    while (!validator) {
+        printf("######################################################################\n");
+        printf("- 1: Petite carte \n- 2: Grande carte\n");
+        scanf("%d", &mapChoice);
+        if(mapChoice == 1 || mapChoice == 2) {
+            validator = 1;
+        }
+    }
+    //create the game with preselected map number one
+    if(mapChoice == 1) {
+        validator = 0;
+        while (!validator) {
+            mapPlayerCapacity = 2;
+            printf(" Veuillez saisir le nombre de joueur pour la partie ( Entre 1 et %d) : \n", mapPlayerCapacity);
+            scanf("%d", &playerCount);
+            printf("######################################################################\n");
+            if(playerCount >= 1 && playerCount <= mapPlayerCapacity) {
+                validator = 1;
+            }
+        }
+        Player* playerList = malloc(sizeof(Player) * playerCount);
+        for (int i = 0; i < playerCount ; i++) {
+            char playerName[100] = {0};
+            printf("Veuillez saisir le nom du joueur %d\n",i+1);
+            scanf("%s", playerName);
+            playerList[i] = createPlayer(playerName,2);
+        }
+        myGame = createGameWithDefaultMap(playerCount,playerList,1);
+    }
+    //create the game with preselected map number two
+    if(mapChoice == 2) {
+        validator = 0;
+        while (!validator) {
+            mapPlayerCapacity = 4;
+            printf("######################################################################\n");
+            printf(" Veuillez saisir le nombre de joueur pour la partie ( Entre 1 et %d) : \n", mapPlayerCapacity);
+            scanf("%d", &playerCount);
+            printf("######################################################################\n");
+            if(playerCount >= 1 && playerCount <= mapPlayerCapacity) {
+                validator = 1;
+            }
+        }
+        Player* playerList = malloc(sizeof(Player) * playerCount);
+        for (int i = 0; i < playerCount ; i++) {
+            char playerName[100] = {0};
+            printf("Veuillez saisir le nom du joueur %d\n",i+1);
+            scanf("%s", playerName);
+            printf("######################################################################\n");
+            playerList[i] = createPlayer(playerName,2);
+        }
+        myGame = createGameWithDefaultMap(playerCount,playerList,2);
+    }
 
+    return myGame;
+}
+
+Game  createImportedGameMenu() {
+    //var initialisation
+    Game myGame;
+    Map myMap = chooseImportedMap();
+    int playerCount;
+    int validator = 0;
+
+    //create game
+    while (!validator) {
+        printf("######################################################################\n");
+        printf(" Veuillez saisir le nombre de joueur pour la partie ( Entre 1 et %d) : \n", myMap.mapMaxPlayer);
+        scanf("%d", &playerCount);
+        if(playerCount >= 1 && playerCount <= myMap.mapMaxPlayer) {
+            validator = 1;
+        }
+    }
+    Player* playerList = malloc(sizeof(Player) * playerCount);
+    for (int i = 0; i < playerCount ; i++) {
+        char playerName[100] = {0};
+        printf("######################################################################\n");
+        printf("Veuillez saisir le nom du joueur %d\n",i+1);
+        scanf("%s", playerName);
+        playerList[i] = createPlayer(playerName,myMap.playersDefaultBombCount);
+    }
+    myGame = createGameWithImportedMap(playerCount,playerList,myMap);
+
+    return myGame;
 }
 
 void uniqueGameMenu() {
@@ -17,15 +101,25 @@ void uniqueGameMenu() {
     Game myGame;
     while (menuChoice != 1 && menuChoice != 2) {
         printf("######################################################################\n");
-        printf("- 1: Sélectionner une carte \n- 2: Importer une carte \n");
+        printf("- 1: Selectionner une carte \n- 2: Importer une carte \n");
         scanf("%d", &menuChoice);
     }
     switch (menuChoice) {
         case 1:
+            myGame = createDefaultGameMenu();
+            if(myGame.playerCount == 1) {
+
+            } else {
+                playLocalMultiplayer(myGame);
+            }
             break;
         case 2:
-            myGame = chooseFile();
-            play(myGame);
+            myGame = createImportedGameMenu();
+            if(myGame.playerCount == 1) {
+
+            } else {
+                playLocalMultiplayer(myGame);
+            }
             break;
         default:
             printf("Bizarre, il y a un bug dans la matrice votre choix n'est pas prévu");

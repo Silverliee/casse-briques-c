@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "../prototypes/gameEntity.h"
+#include "../prototypes/map.h"
 
 
 int SELECTED_MAP_1[5][9] = {
@@ -49,7 +50,7 @@ Player createPlayer(char *name, int bombCount) {
     return myPlayer;
 }
 
-Map createMap(int selectedMap) {
+Map createBaseMap(int selectedMap) {
     Map myMap;
     switch (selectedMap) {
         case 1:
@@ -84,12 +85,29 @@ Map createMap(int selectedMap) {
     return myMap;
 }
 
-Game createGame(int playerCount, Player *playerList, int mapSelected) {
+Game createGameWithDefaultMap(int playerCount, Player playerList[], int mapSelected) {
     Game myGame;
+    Map myMap;
     myGame.playerCount = playerCount;
     myGame.mapSelected = mapSelected;
     myGame.WhoPlay = 1;
-    myGame.gameMap = createMap(mapSelected);
+    myMap = createBaseMap(mapSelected);
+    myGame.gameMap = purgeMapFromUselessPlayers(myMap,playerCount);
+    myGame.posedBomb = malloc(sizeof(Bomb) * 1000);
+    myGame.posedBombCount = 0;
+    myGame.players = malloc(sizeof(Player) * playerCount);
+    for (int i = 0; i < playerCount; i++) {
+        myGame.players[i] = playerList[i];
+    }
+    return myGame;
+}
+
+Game createGameWithImportedMap(int playerCount, Player playerList[], Map myMap) {
+    Game myGame;
+    myGame.playerCount = playerCount;
+    myGame.mapSelected = 0;
+    myGame.WhoPlay = 1;
+    myGame.gameMap = purgeMapFromUselessPlayers(myMap,playerCount);
     myGame.posedBomb = malloc(sizeof(Bomb) * 1000);
     myGame.posedBombCount = 0;
     myGame.players = malloc(sizeof(Player) * playerCount);

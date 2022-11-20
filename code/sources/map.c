@@ -27,3 +27,20 @@ void printMap(Game myGame) {
         printf("\n");
     }
 }
+
+Map purgeMapFromUselessPlayers(Map myMap, int playerCount) {
+    int encounterPlayers = 0;
+    for (int i = 0; i < myMap.row; i++) {
+        for (int j = 0; j < myMap.column; j++) {
+            if(myMap.map[i][j] >= 5) {
+                if(encounterPlayers != playerCount) {
+                    encounterPlayers++;
+                    continue;
+                } else {
+                    myMap.map[i][j] = 2;
+                }
+            }
+        }
+    }
+    return myMap;
+}

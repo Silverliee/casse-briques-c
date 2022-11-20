@@ -11,8 +11,8 @@
 // - 3 -> il y a une incohérence à gérer;
 int isThereAWinner(Game myGame);
 
-void playTurn(Game myGame);
+void playLocalMultiplayer(Game myGame);
 
-void play(Game myGame);
+void playSolo(Game myGame);
 
 #endif

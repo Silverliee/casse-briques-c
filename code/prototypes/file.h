@@ -3,6 +3,6 @@
 
 #include "game.h"
 
-Game chooseFile();
+Map chooseImportedMap();
 
 #endif

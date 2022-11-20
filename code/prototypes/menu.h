@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include "game.h"
 
-void gameMenu();
+Game createDefaultGameMenu();
+
+Game createImportedGameMenu();
 
 void uniqueGameMenu();
 
@@ -12,5 +14,6 @@ void multipleGameMenu();
 
 void onlineGameMenu();
 
+void gameMenu();
 
 #endif
