@@ -3,10 +3,8 @@
 #include <malloc.h>
 #include "../prototypes/menu.h"
 
-Game chooseFile() {
+Map chooseImportedMap() {
     //var init
-    int playerCount;
-    int validator = 0;
     int baseBombNumber;
     int cursor = -2;
     int mapChoice = 0;
@@ -80,27 +78,13 @@ Game chooseFile() {
     }
     fclose(mapFile);
 
-    //select the number of player :
-    while (!validator) {
-        printf("######################################################################\n");
-        printf("Veuillez entrer le nombre de joueur de 1 a 4 :\n");
-        scanf("%d", &playerCount);
-        if (playerCount >= 1 && playerCount <= 4) {
-            validator = 1;
-        }
-    }
+    //create map
+    Map myMap;
+    myMap.row = row;
+    myMap.column = column;
+    myMap.map = customMap;
+    myMap.playersDefaultBombCount = baseBombNumber;
+    myMap.mapMaxPlayer = playerIndex - 5;
 
-    //create playerList
-    Player *playerList = malloc(sizeof(Player) * playerCount);
-    for (int i = 0; i < playerCount; i++) {
-        char playerName[100] = {0};
-        printf("######################################################################\n");
-        printf("Veuillez saisir le nom du joueur %d\n", i + 1);
-        scanf("%s", playerName);
-        playerList[i] = createPlayer(playerName, baseBombNumber);
-    }
-
-    //create the game
-    Game myGame = createGame(playerCount, playerList, 0);
-    return myGame;
+    return myMap;
 }

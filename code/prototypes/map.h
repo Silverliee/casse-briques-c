@@ -9,4 +9,6 @@
 **/
 void printMap(Game myGame);
 
+Map purgeMapFromUselessPlayers(Map myMap, int playerCount);
+
 #endif
