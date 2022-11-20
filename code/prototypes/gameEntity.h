@@ -66,6 +66,7 @@ typedef struct {
     Map gameMap;
     Bomb *posedBomb;
     int posedBombCount;
+    int soloGame;
 } Game;
 
 /**
@@ -80,10 +81,10 @@ Player createPlayer(char *name, int bombCount);
 	crée la carte lié au numéro donné sans oublié de crée et de set une liste vide de bomb
 	pour l'attribut posedBomb
 **/
-Game createGameWithDefaultMap(int playerCount, Player playerList[], int mapSelected);
+Game createGameWithDefaultMap(int playerCount, Player playerList[], int mapSelected, int soloGame);
 
 
-Game createGameWithImportedMap(int playerCount, Player playerList[], Map importedMap);
+Game createGameWithImportedMap(int playerCount, Player playerList[], Map importedMap, int soloGame);
 
 /**
 	Crée la map en fonction du genre de map selectionné

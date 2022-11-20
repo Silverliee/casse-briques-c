@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #include "../prototypes/game.h"
 #include "../prototypes/map.h"
 #include "../prototypes/player.h"
 #include "../prototypes/bomb.h"
+#include "../prototypes/bot.h"
 
 int isThereAWinner(Game myGame) {
     int playerAlive = 0;
@@ -90,8 +93,8 @@ void playLocalMultiplayer(Game myGame) {
 }
 
 void playSolo(Game myGame) {
-    int direction;
-    int action;
+    int direction = 0;
+    int action = 0;
     while (1) {
         action = 0;
         makeThemBoom(myGame);
@@ -99,8 +102,8 @@ void playSolo(Game myGame) {
         if (isThereAWinner(myGame) != 0) {
             break;
         }
-        printMap(myGame);
         if (myGame.WhoPlay == 1) {
+            printMap(myGame);
             printf("Choisissez une action:\n");
             while (action < 1 || action > 3) {
                 printf("- 1: Se deplacer\n- 2: Poser une bombe\n- 3: Ne rien faire\n");
@@ -125,39 +128,52 @@ void playSolo(Game myGame) {
                     printf("Cette action n'existe pas, veuillez en selectionner une autre\n");
                 }
             }
-            if (myGame.players[myGame.WhoPlay - 1].inventory.invincibleTimer > 0) {
-                myGame.players[myGame.WhoPlay - 1].inventory.invincibleTimer--;
-                if (myGame.players[myGame.WhoPlay - 1].inventory.invincibleTimer == 0) {
-                    myGame.players[myGame.WhoPlay - 1].inventory.invincibility = 0;
-                }
+        } else {
+            //var initialisation
+            int botChoice;
+            //choose random action
+            srand(time(NULL));
+            botChoice = 1 + rand() % (1 - 3);
+            //movement
+            if (botChoice == 1) {
+                botMovement(myGame);
+                printMap(myGame);
             }
-            if (myGame.WhoPlay == myGame.playerCount) {
-                myGame.WhoPlay = 1;
-                while (myGame.players[myGame.WhoPlay - 1].life == 0) {
-                    myGame.WhoPlay++;
-                }
-            } else {
+            if (botChoice == 2) {
+                dropBomb(&myGame, &myGame.players[myGame.WhoPlay - 1]);
+            }
+            if (botChoice == 3) {
+                continue;
+            }
+        }
+        if (myGame.players[myGame.WhoPlay - 1].inventory.invincibleTimer > 0) {
+            myGame.players[myGame.WhoPlay - 1].inventory.invincibleTimer--;
+            if (myGame.players[myGame.WhoPlay - 1].inventory.invincibleTimer == 0) {
+                myGame.players[myGame.WhoPlay - 1].inventory.invincibility = 0;
+            }
+        }
+        if (myGame.WhoPlay == myGame.playerCount) {
+            myGame.WhoPlay = 1;
+            while (myGame.players[myGame.WhoPlay - 1].life == 0) {
                 myGame.WhoPlay++;
-                while (myGame.players[myGame.WhoPlay - 1].life == 0) {
-                    myGame.WhoPlay++;
-                }
             }
         } else {
-            //Ecrire fonction des ia ici
-        }
-    }
-
-    printMap(myGame);
-    switch (isThereAWinner(myGame)) {
-        case 1:
-            for (int i = 0; i < myGame.playerCount; i++) {
-                if (myGame.players[i].life > 0) {
-                    printf("Le gagnant est le joueur %d, %s", i + 1, myGame.players[i].name);
-                }
+            myGame.WhoPlay++;
+            while (myGame.players[myGame.WhoPlay - 1].life == 0) {
+                myGame.WhoPlay++;
             }
-            break;
-        case 2:
-            printf("Match nul !!");
-            break;
+        }
+        switch (isThereAWinner(myGame)) {
+            case 1:
+                for (int i = 0; i < myGame.playerCount; i++) {
+                    if (myGame.players[i].life > 0) {
+                        printf("Le gagnant est le joueur %d, %s", i + 1, myGame.players[i].name);
+                    }
+                }
+                break;
+            case 2:
+                printf("Match nul !!");
+                break;
+        }
     }
 }

@@ -11,7 +11,8 @@ SET(PROJECT_HEADERS
         code/prototypes/map.h
         code/prototypes/player.h
         code/prototypes/menu.h
-        code/prototypes/file.h)
+        code/prototypes/file.h
+        code/prototypes/bot.h)
 SET(PROJECT_SOURCES
         code/sources/bomb.c
         code/sources/game.c
@@ -20,6 +21,7 @@ SET(PROJECT_SOURCES
         code/sources/map.c
         code/sources/player.c
         code/sources/menu.c
-        code/sources/file.c)
+        code/sources/file.c
+        code/sources/bot.c)
 
 add_executable(casse_brique_c ${PROJECT_SOURCES} ${PROJECT_HEADERS} main.c)
