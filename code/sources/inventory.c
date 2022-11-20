@@ -49,7 +49,7 @@ void addItem(Player *player, int itemCode) {
             printf("Vous devenez invincible pendant 2 tours\n");
             break;
         case -9:
-            if(player->inventory.pickHeart == 0){
+            if (player->inventory.pickHeart == 0) {
                 player->inventory.heart += 1;
                 player->inventory.pickHeart = 1;
             }
@@ -69,36 +69,27 @@ int generateRandomItem() {
     int response;
     srand(time(NULL));
     int lowerLimit = 1, upperLimit = 100;
-    int cursor =  lowerLimit + rand() % (upperLimit - lowerLimit);
+    int cursor = lowerLimit + rand() % (upperLimit - lowerLimit);
     if (cursor <= 15) {
         response = -1;
-    }
-    else if (cursor <= 30) {
+    } else if (cursor <= 30) {
         response = -2;
-    }
-    else if (cursor <= 40) {
+    } else if (cursor <= 40) {
         response = -3;
-    }
-    else if (cursor <= 50) {
+    } else if (cursor <= 50) {
         response = -4;
-    }
-    else if (cursor <= 55) {
+    } else if (cursor <= 55) {
         response = -5;
-    }
-    else if (cursor <= 65) {
+    } else if (cursor <= 65) {
         response = -6;
-    }
-    else if (cursor <= 75) {
+    } else if (cursor <= 75) {
         response = -7;
-    }
-    else if (cursor <= 85) {
+    } else if (cursor <= 85) {
         response = -8;
-    }
-    else if (cursor <= 95) {
+    } else if (cursor <= 95) {
         response = -9;
-    }
-    else if (cursor <= 100) {
+    } else if (cursor <= 100) {
         response = -10;
     }
-    return response ;
+    return response;
 }

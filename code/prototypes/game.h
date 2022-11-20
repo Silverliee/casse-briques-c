@@ -1,5 +1,6 @@
 #ifndef game_h
 #define game_h
+
 #include <stdio.h>
 #include "gameEntity.h"
 
@@ -9,7 +10,9 @@
 // - 2 -> si il reste plus de joueur en vie -> C'est un match null
 // - 3 -> il y a une incohérence à gérer;
 int isThereAWinner(Game myGame);
+
 void playTurn(Game myGame);
+
 void play(Game myGame);
 
 #endif
