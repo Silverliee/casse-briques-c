@@ -85,15 +85,16 @@ Map createBaseMap(int selectedMap) {
     return myMap;
 }
 
-Game createGameWithDefaultMap(int playerCount, Player playerList[], int mapSelected) {
+Game createGameWithDefaultMap(int playerCount, Player playerList[], int mapSelected, int soloGame) {
     Game myGame;
     Map myMap;
+    myGame.soloGame = soloGame;
     myGame.playerCount = playerCount;
     myGame.mapSelected = mapSelected;
     myGame.WhoPlay = 1;
     myMap = createBaseMap(mapSelected);
-    myGame.gameMap = purgeMapFromUselessPlayers(myMap,playerCount);
-    myGame.posedBomb = malloc(sizeof(Bomb) * 1000);
+    myGame.gameMap = purgeMapFromUselessPlayers(myMap, playerCount);
+    myGame.posedBomb = malloc(sizeof(Bomb) * 100);
     myGame.posedBombCount = 0;
     myGame.players = malloc(sizeof(Player) * playerCount);
     for (int i = 0; i < playerCount; i++) {
@@ -102,13 +103,14 @@ Game createGameWithDefaultMap(int playerCount, Player playerList[], int mapSelec
     return myGame;
 }
 
-Game createGameWithImportedMap(int playerCount, Player playerList[], Map myMap) {
+Game createGameWithImportedMap(int playerCount, Player playerList[], Map myMap, int soloGame) {
     Game myGame;
+    myGame.soloGame = soloGame;
     myGame.playerCount = playerCount;
     myGame.mapSelected = 0;
     myGame.WhoPlay = 1;
-    myGame.gameMap = purgeMapFromUselessPlayers(myMap,playerCount);
-    myGame.posedBomb = malloc(sizeof(Bomb) * 1000);
+    myGame.gameMap = purgeMapFromUselessPlayers(myMap, playerCount);
+    myGame.posedBomb = malloc(sizeof(Bomb) * 100);
     myGame.posedBombCount = 0;
     myGame.players = malloc(sizeof(Player) * playerCount);
     for (int i = 0; i < playerCount; i++) {
