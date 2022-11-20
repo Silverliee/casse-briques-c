@@ -1,5 +1,6 @@
 #ifndef gameEntity_h
 #define gameEntity_h
+
 #include <stdio.h>
 
 /**
@@ -21,7 +22,7 @@ typedef struct {
 
 //Le joueur
 typedef struct {
-    char* name;
+    char *name;
     int life;
     int bombCount;
     Inventory inventory;
@@ -69,7 +70,7 @@ typedef struct {
 	Cette fonction crée et renvoie un nouveau joueur avec le nom et le nombre de bomb par
 	défaut donné en parametre
 **/
-Player createPlayer(char* name, int bombCount);
+Player createPlayer(char *name, int bombCount);
 
 /**
 	Cette fonction prend en paramettre le nombre de joueur et la map selectionné,
@@ -77,7 +78,7 @@ Player createPlayer(char* name, int bombCount);
 	crée la carte lié au numéro donné sans oublié de crée et de set une liste vide de bomb
 	pour l'attribut posedBomb
 **/
-Game *createGame(int playerCount,Player playerList[],int mapSelected);
+Game createGame(int playerCount, Player playerList[], int mapSelected);
 
 /**
 	Crée la map en fonction du genre de map selectionné
