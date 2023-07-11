@@ -30,4 +30,3 @@
 # L'équipe
 <p style="font-size: large"> -  Mohamed Seydou TRAORE</p>
 <p style="font-size: large"> -  Quentin MAITRE</p>
-<p style="font-size: large"> - Sami CORBIER</p>
